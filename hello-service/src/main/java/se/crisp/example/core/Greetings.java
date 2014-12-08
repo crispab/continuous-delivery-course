@@ -1,7 +1,9 @@
 package se.crisp.example.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Greetings {
-    //@JsonProperty, when needed?
+    @JsonProperty
     private String content;
 
     private Greetings() {

@@ -14,5 +14,4 @@ public class HelloApplicationTest {
         Application application = new HelloApplication();
         Assert.assertEquals("hello", application.getName());
     }
-
 }
