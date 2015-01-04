@@ -38,7 +38,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>integration-test</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
@@ -47,4 +47,32 @@
             </plugin>        
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>sit</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.smartbear.soapui</groupId>
+                        <artifactId>soapui-maven-plugin</artifactId>
+                        <configuration>
+                            <projectProperties>
+                                <value>test.endpoint=http://sit.axelqvist.com:8080</value>
+                            </projectProperties>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>SoapUI</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
