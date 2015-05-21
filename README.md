@@ -10,7 +10,7 @@ The sample project is based on Dropwizard that looks very promising based on its
 * Built-in REST support - jersey is part of the jar file.
 * Good support for writing tests - see https://dropwizard.github.io/dropwizard/manual/testing.html
 
-An addition, on-line documentation looks promising, see https://dropwizard.github.io/dropwizard/manual/index.html.
+In addition, on-line documentation looks promising, see https://dropwizard.github.io/dropwizard/manual/index.html.
 
 
 
