@@ -1,6 +1,7 @@
 package hello;
 
 import com.sun.jersey.api.core.ResourceConfig;
+import hello.resources.GoodByeResource;
 import hello.resources.HelloResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -27,5 +28,6 @@ public class HelloApplication extends Application<HelloConfiguration> {
         HelloResource resource = new HelloResource(configuration.getTemplate());
         environment.jersey().disable(ResourceConfig.FEATURE_DISABLE_WADL);
         environment.jersey().register(resource);
+        environment.jersey().register(new GoodByeResource());
     }
 }
