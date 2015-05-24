@@ -8,7 +8,6 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 public class FarewellSteps {
-    private static final String BASE_URL = "http://localhost:8080";
     private final SetupSteps setupSteps;
     private String goodbye;
 
@@ -19,7 +18,8 @@ public class FarewellSteps {
     @When("^she says goodbye$")
     public void sayGoodbye() throws Throwable {
         Client client = Client.create();
-        WebResource resource = client.resource(BASE_URL + "/goodbye?name=" + setupSteps.getPersonName());
+        String endpoint = System.getProperty("service.endpoint");
+        WebResource resource = client.resource(endpoint + "/goodbye?name=" + setupSteps.getPersonName());
         resource.accept("application/json");
         ClientResponse response = resource.get(ClientResponse.class);
         Assert.assertEquals("Unexpected HTTP status code", 200, response.getStatus());

@@ -8,7 +8,6 @@ import com.sun.jersey.api.client.Client;
 import org.junit.Assert;
 
 public class GreetingsSteps {
-    private static final String BASE_URL = "http://localhost:8080";
     private final SetupSteps setupSteps;
     private String greetings;
 
@@ -19,7 +18,8 @@ public class GreetingsSteps {
     @When("^he says hello$")
     public void sayGreetings() throws Throwable {
         Client client = Client.create();
-        WebResource resource = client.resource(BASE_URL + "/hello?name=" + this.setupSteps.getPersonName());
+        String endpoint = System.getProperty("service.endpoint");
+        WebResource resource = client.resource(endpoint + "/hello?name=" + this.setupSteps.getPersonName());
         resource.accept("application/json");
         ClientResponse response = resource.get(ClientResponse.class);
         Assert.assertEquals("Unexpected HTTP status code", 200, response.getStatus());
