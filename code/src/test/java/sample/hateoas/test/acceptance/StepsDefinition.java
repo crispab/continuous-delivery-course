@@ -1,0 +1,18 @@
+package sample.hateoas.test.acceptance;
+
+
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import sample.hateoas.SampleHateoasApplication;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@ContextConfiguration(classes = SampleHateoasApplication.class)
+@SpringBootTest
+public @interface StepsDefinition {
+}
