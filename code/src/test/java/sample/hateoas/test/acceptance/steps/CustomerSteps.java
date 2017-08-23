@@ -26,7 +26,7 @@ public class CustomerSteps {
         context.customers = repository.findAll();
     }
 
-    @Then("^the following customers should be returned:$")
+    @Then("^the following customers should always be present:$")
     public void theFollowingCustomersShouldBePresent(List<Customer> customers) throws Throwable {
         for (Customer customer : customers) {
             sample.hateoas.domain.Customer one = repository.findOne(customer.id);
