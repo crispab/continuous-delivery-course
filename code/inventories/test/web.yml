@@ -1,0 +1,32 @@
+---
+
+- hosts: webservers
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - name: Ensure openjdk8 is installed
+      apt: 
+        name: openjdk-8-jre 
+        state: present 
+
+    - name: Ensure web application is installed/updated
+      copy: 
+        src: ./cd-course-sample.jar 
+        dest: /usr/local/bin/
+        owner: app
+        group: app
+        mode: ug+rx,o-wx
+
+    - name: Setup the sample application as a service
+      file:
+        src: /usr/local/bin/cd-course-sample.jar
+        dest: /etc/init.d/cd-course-sample
+        state: link
+
+    - name: Ensure the application service is (re)started
+      command: /etc/init.d/cd-course-sample restart
+
+
+
+
+    

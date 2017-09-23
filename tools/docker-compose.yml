@@ -15,10 +15,6 @@
       ports:
         - "8050:8050"
         - "522:22"
-      volumes:
-        - ./gitlab-data/etc:/etc/gitlab
-        - ./gitlab-data/logs:/var/log/gitlab
-        - ./gitlab-data/data:/var/opt/gitlab
 
     jenkins:
       build: ./jenkins
@@ -49,3 +45,11 @@
         - "8081:8081"
       volumes:
         - "./nexus-data:/nexus-data"
+
+    test:
+      build: ./test
+      image: cd-course/test
+      container_name: test
+      hostname: test
+      ports:
+        - "18090:8090"
