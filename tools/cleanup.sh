@@ -9,6 +9,7 @@ echo "Removing images..."
 docker rmi cd-course/jenkins
 docker rmi cd-course/gitlab
 docker rmi cd-course/nexus
+docker rmi cd-course/test
 
 echo "Remove mapped volumes..."
 rm -rf *-data
