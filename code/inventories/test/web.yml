@@ -9,17 +9,24 @@
         name: openjdk-8-jre 
         state: present 
 
-    - name: Ensure web application is installed/updated
-      copy: 
-        src: ./cd-course-sample.jar 
+    - name: Download application, version {{version}}
+      maven_artifact:
+        repository_url: 'http://nexus:8081/repository/maven-group/'
+        version: "{{version}}"
+        artifact_id: cd-course-sample
+        group_id: se.crisp.course    
         dest: /usr/local/bin/
+
+    - name: Set file permissions
+      file:
+        path: /usr/local/bin/cd-course-sample-{{version}}.jar
         owner: app
         group: app
-        mode: ug+rx,o-wx
+        mode: u+rx,go-xw
 
     - name: Setup the sample application as a service
       file:
-        src: /usr/local/bin/cd-course-sample.jar
+        src: /usr/local/bin/cd-course-sample-{{version}}.jar
         dest: /etc/init.d/cd-course-sample
         state: link
 
