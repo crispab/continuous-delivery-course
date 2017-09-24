@@ -18,9 +18,6 @@
 
     jenkins:
       build: ./jenkins
-      depends_on:
-        - gitlab
-        - nexus
       image: cd-course/jenkins
       container_name: jenkins
       hostname: jenkins
