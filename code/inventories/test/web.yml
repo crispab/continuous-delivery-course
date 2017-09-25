@@ -9,7 +9,7 @@
         name: openjdk-8-jre 
         state: present 
 
-    - name: Download application, version {{version}}
+    - name: Download sample application from Nexus, version {{version}}
       maven_artifact:
         repository_url: 'http://nexus:8081/repository/maven-group/'
         version: "{{version}}"
@@ -30,10 +30,7 @@
         dest: /etc/init.d/cd-course-sample
         state: link
 
-    - name: Ensure the application service is (re)started
-      command: /etc/init.d/cd-course-sample restart
-
-
-
-
-    
+    - name: Ensure the sample application is restarted
+      service:
+        name: cd-course-sample
+        state: restarted
