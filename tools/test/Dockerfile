@@ -2,8 +2,9 @@ FROM ubuntu:16.04
 
 RUN useradd -ms /bin/bash app
 RUN echo 'app:app' | chpasswd
+RUN usermod -aG sudo app
 
-RUN apt-get update && apt-get install -y openssh-server python python-lxml
+RUN apt-get update && apt-get install -y sudo openssh-server python python-lxml
 RUN mkdir /var/run/sshd
 RUN echo 'root:root' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
