@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -29,13 +30,18 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@TestPropertySource(properties = {"app.version=1.0.42"})
 public class SampleHateoasApplicationTests {
+
+	@Value("${app.version}")
+	private String version;
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -62,4 +68,13 @@ public class SampleHateoasApplicationTests {
 				.isEqualTo(MediaType.parseMediaType("application/json;charset=UTF-8"));
 	}
 
+	@Test
+	public void hasApplicationVersion() throws Exception {
+		ResponseEntity<String> entity = this.restTemplate.getForEntity("/about",
+				String.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(entity.getBody()).contains("{\"version\":\"1.0.42\"}");
+	}
 }
+
+

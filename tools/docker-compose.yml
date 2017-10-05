@@ -37,7 +37,7 @@
       restart: "always"
       mem_limit: 4g
       environment:
-        JAVA_MAX_HEAP: "-Xmx3g"
+        INSTALL4J_ADD_VM_PARAMS: "-Xmx3g"
       ports:
         - "8081:8081"
       volumes:
