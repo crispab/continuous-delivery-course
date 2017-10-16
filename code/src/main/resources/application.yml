@@ -1,5 +1,32 @@
+spring:
+  profiles.active: dev
+  jpa.hibernate.ddl-auto: none
 app:
   version: @project.version@
 
+---
 server:
   port: 8090
+customer:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: app
+    password: app
+
+---
+spring:
+  profiles: dev
+customer:
+  datasource:
+    url: jdbc:mysql://localhost:13306/cd_course_dev?autoReconnect=true&useSSL=false
+flyway:
+  locations: classpath:/db/migration/common,/db/migration/dev
+
+---
+spring:
+  profiles: test
+customer:
+  datasource:
+    url: jdbc:mysql://db:3306/cd_course_test?autoReconnect=true&useSSL=false
+flyway:
+  locations: classpath:/db/migration/common,/db/migration/test

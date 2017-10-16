@@ -49,3 +49,17 @@
       hostname: test
       ports:
         - "18090:8090"
+
+    db:
+      build: ./db
+      image: cd-course/db
+      container_name: db
+      hostname: db
+      mem_limit: 2gb
+      environment:
+        MYSQL_ROOT_PASSWORD: db4u
+      ports:
+        - "8082:8080"
+        - "13306:3306"
+      volumes:
+        - ./db-data:/var/lib/mysql
