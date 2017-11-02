@@ -23,7 +23,7 @@ public class CustomerSteps {
 
     @When("^searching for all customers$")
     public void fetchingAllCustomers() throws Throwable {
-        context.customers = repository.findAll();
+       // empty
     }
 
     @Then("^the following customers should always be present:$")
