@@ -1,0 +1,1 @@
+SQL scripts that are specific to the development (local) environment should be put here.

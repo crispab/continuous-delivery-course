@@ -1,0 +1,1 @@
+SQL scripts that are specific to the (automated) test environment should be put here.

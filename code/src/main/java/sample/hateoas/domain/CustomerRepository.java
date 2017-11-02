@@ -16,12 +16,8 @@
 
 package sample.hateoas.domain;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CustomerRepository {
-
-	List<Customer> findAll();
-
-	Customer findOne(Long id);
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 }
